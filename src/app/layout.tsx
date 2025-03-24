@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import Image from "next/image";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "ABITUS - Pessoas desaparecidas",
@@ -17,14 +18,18 @@ export default function RootLayout({
     <html lang="en">
       <body className="flex flex-col justify-between">
         <div className="flex flex-col items-center border-b-1 border-neutral-500">
-          <Image
-            src="/logo.png"
-            alt="Logo Polícia Civil de Mato Grosso"
+          <Link
+            href="/"
             className="px-8 py-[41px]"
-            width={500}
-            height={144}
-            priority
-          />
+          >
+            <Image
+              src="/logo.png"
+              alt="Logo Polícia Civil de Mato Grosso"
+              width={500}
+              height={144}
+              priority
+            />
+          </Link>
         </div>
         <main className="flex flex-col gap-5 items-center py-5 flex-1">
           {children}
