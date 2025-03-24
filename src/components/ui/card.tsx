@@ -6,7 +6,7 @@ interface Props {
   person: missingPerson
 }
 
-export default async function Card({ person }: Props) {
+export default function Card({ person }: Props) {
   return (
     <div className="bg-white bg-cover bg-center bg-opacity-25 bg-[url(/brasao-pc.png)] grid grid-cols-3 gap-3 rounded-md w-[300px] p-5 content-between">
       <div className="flex flex-col col-span-3 items-center">

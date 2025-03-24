@@ -1,31 +1,13 @@
 import Card from "@/components/ui/card";
-import { missingAndFoundNumbers, missingPerson } from "@/types";
-
-const BASE_URL = process.env.BASE_URL
-
-const getMissingPersons = async (
-  page: number = 0,
-  perPage: number = 10
-): Promise<missingPerson[]> => {
-  const data = await fetch(`${BASE_URL}/pessoas/aberto/filtro?pagina=${page}&porPagina=${perPage}&direcao=DESC`);
-  const { content: missingPersons } = await data.json();
-  return missingPersons
-}
-
-const getMissingAndFoundNumbers = async (): Promise<missingAndFoundNumbers> => {
-  const data = await fetch(`${BASE_URL}/pessoas/aberto/estatistico`);
-  const {
-    quantPessoasDesaparecidas: missingNumber,
-    quantPessoasEncontradas: foundNumber
-  } = await data.json();
-  return { missingNumber, foundNumber }
-}
+import { fetchMissingPersons } from "../actions/fetch-missing-persons";
+import { fetchMissingAndFoundNumbers } from "../actions/fetch-missing-and-found-numbers";
+import { LoadMore } from "@/components/load-more";
 
 export default async function Home() {
   const [missingPersons, { missingNumber, foundNumber }] = await Promise.all(
     [
-      getMissingPersons(),
-      getMissingAndFoundNumbers()
+      fetchMissingPersons(),
+      fetchMissingAndFoundNumbers()
     ]
   );
 
@@ -39,6 +21,7 @@ export default async function Home() {
         {missingPersons.map((person) => (
           <Card key={person.id} person={person} />
         ))}
+        <LoadMore />
       </div>
     </>
   );
