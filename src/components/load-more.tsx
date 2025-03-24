@@ -2,11 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
+import { Card } from "@/components/ui/card";
 import { Spinner } from "@/components/ui/spinner";
 import { fetchMissingPersons } from "@/actions/fetch-missing-persons";
 import { missingPerson } from "@/types";
-
-import Card from "@/components/ui/card";
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 

@@ -15,8 +15,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        <div className="flex flex-col items-center">
+      <body className="flex flex-col justify-between">
+        <div className="flex flex-col items-center border-b-1 border-neutral-500">
           <Image
             src="/logo.png"
             alt="Logo Polícia Civil de Mato Grosso"
@@ -26,12 +26,10 @@ export default function RootLayout({
             priority
           />
         </div>
-        <div className="border-b-1 border-neutral-500 w-full"></div>
-        <main className="flex flex-col gap-5 items-center py-5">
+        <main className="flex flex-col gap-5 items-center py-5 flex-1">
           {children}
         </main>
-        <div className="border-b-1 border-neutral-500 w-full"></div>
-        <footer className="flex flex-col items-center gap-3 md:gap-0 md:flex-row md:justify-between py-[11px] px-10">
+        <footer className="flex flex-col items-center gap-3 md:gap-0 md:flex-row md:justify-between py-[11px] px-10 border-t-1 border-neutral-500">
           <div className="flex flex-col">
             <h4 className="font-semibold text-[21px]">Contato</h4>
             <span className="text-[12px]">Avenida Coronel Escolástico, 346, Bairro Bandeirantes, Cuiabá-MT. CEP: 78.010-200 - Telefone: (65) 3613-5602</span>

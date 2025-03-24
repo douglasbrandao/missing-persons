@@ -1,14 +1,18 @@
 import { missingPerson } from "@/types";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 interface Props {
   person: missingPerson
 }
 
-export default function Card({ person }: Props) {
+export function Card({ person }: Props) {
   return (
-    <div className="bg-white bg-cover bg-center bg-opacity-25 bg-[url(/brasao-pc.png)] grid grid-cols-3 gap-3 rounded-md w-[300px] p-5 content-between">
+    <Link
+      href={`/detail/${person.id}`}
+      className="bg-white bg-cover bg-center bg-opacity-25 bg-[url(/brasao-pc.png)] grid grid-cols-3 gap-3 rounded-md w-[300px] p-5 content-between"
+    >
       <div className="flex flex-col col-span-3 items-center">
         <h2 className="font-extrabold uppercase text-3xl text-red-500">Desaparecido</h2>
         <h6 className="font-bold uppercase text-base text-red-500">{person.nome}</h6>
@@ -55,6 +59,6 @@ export default function Card({ person }: Props) {
           Se você tem qualquer informação sobre o paradeiro desta pessoa, entre em contato imediatamente com a Polícia Civil de Mato Grosso pelo telefone <strong>(65) 3613-5602</strong>.
         </p>
       </div>
-    </div>
+    </Link>
   );
 }

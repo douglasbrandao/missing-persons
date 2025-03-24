@@ -1,6 +1,6 @@
-import Card from "@/components/ui/card";
 import { fetchMissingPersons } from "../actions/fetch-missing-persons";
 import { fetchMissingAndFoundNumbers } from "../actions/fetch-missing-and-found-numbers";
+import { Card } from "@/components/ui/card";
 import { LoadMore } from "@/components/load-more";
 
 export default async function Home() {
