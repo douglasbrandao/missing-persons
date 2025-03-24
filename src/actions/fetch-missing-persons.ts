@@ -4,10 +4,10 @@ import { missingPerson } from "@/types";
 
 const BASE_URL = process.env.BASE_URL
 
-export const fetchMissingPersons = async (
+export async function fetchMissingPersons(
   page: number = 0,
   perPage: number = 12
-): Promise<missingPerson[]> => {
+): Promise<missingPerson[]> {
 
   try {
     const data = await fetch(`${BASE_URL}/pessoas/aberto/filtro?pagina=${page}&porPagina=${perPage}&direcao=DESC`);
