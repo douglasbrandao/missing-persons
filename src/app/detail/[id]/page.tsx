@@ -1,8 +1,9 @@
 import Image from "next/image";
 
 import { fetchMissingPersonDetail } from "@/actions/fetch-missing-person-detail";
+import { Form } from "@/components/form";
 
-export default async function missingPersonDetail({
+export default async function MissingPersonDetail({
   params
 }: {
   params: Promise<{ id: number }>
@@ -71,7 +72,9 @@ export default async function missingPersonDetail({
           </div>
         </>
         :
-        <div></div>
+        (
+          <Form occurence={person.ultimaOcorrencia} />
+        )
       }
     </div>
   );

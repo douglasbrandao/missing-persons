@@ -8,7 +8,7 @@ export interface missingPerson {
   ultimaOcorrencia: lastOccurence;
 }
 
-interface lastOccurence {
+export interface lastOccurence {
   dtDesaparecimento: string;
   dataLocalizacao?: null;
   encontradoVivo: boolean;
