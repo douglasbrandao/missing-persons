@@ -18,17 +18,19 @@ Este projeto é uma Single Page Application (SPA) desenvolvida em Next.js para c
 ## Instalação e execução
 
 ### Sem Docker
+
 Clone o repositório:
-   ```sh
-   git clone https://github.com/douglasbrandao/missing-persons.git ```
+```sh
+   git clone https://github.com/douglasbrandao/missing-persons.git
+```
 Instale as dependências:
-   ```sh
+```sh
    npm install
-   ```
+```
 Execute o projeto:
-   ```sh
+```sh
    npm run dev
-   ```
+```
 Acesse em: `http://localhost:3000`
 
 ### Com Docker (Falta fazer)
