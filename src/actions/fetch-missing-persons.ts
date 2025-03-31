@@ -8,7 +8,6 @@ export async function fetchMissingPersons(
   page: number = 0,
   perPage: number = 12
 ): Promise<missingPerson[]> {
-
   try {
     const data = await fetch(`${BASE_URL}/pessoas/aberto/filtro?pagina=${page}&porPagina=${perPage}&direcao=DESC`);
     const { content: missingPersons } = await data.json();

@@ -4,6 +4,9 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { lastOccurence } from "@/types";
+import { sendMissingPersonInformation } from "@/actions/send-missing-person-information";
+import { useRouter } from 'next/navigation';
+import { ToastContainer, toast } from 'react-toastify';
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 3MB
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png"];
@@ -37,12 +40,39 @@ interface Props {
 }
 
 export function Form({ occurence }: Props) {
-  const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
+  const router = useRouter()
+  const {
+    register,
+    handleSubmit,
+    formState: {
+      isSubmitting,
+      errors,
+    }
+  } = useForm<FormData>({
       resolver: zodResolver(schema)
   });
 
-  const onSubmit = (data: FormData) => {
-      console.log(data, occurence);
+  async function onSubmit(data: FormData) {
+    try {
+      await sendMissingPersonInformation({
+        information: data.information,
+        description: data.description,
+        date: data.date,
+        occurence_id: occurence.ocoId,
+        files: data.file,
+      })
+      toast.success('Informações enviadas com sucesso!', {
+        onClose: () => {
+          router.refresh()
+        }
+      })
+    } catch {
+      toast.error('Tivemos um problema com o envio dos dados', {
+        onClose: () => {
+          router.refresh()
+        }
+      })
+    }
   };
 
   return (
@@ -78,7 +108,14 @@ export function Form({ occurence }: Props) {
           <p className="text-sm text-red-500 mt-1">
             <span className="font-medium">{errors.file.message}</span>
           </p>}
-        <input type="submit" className="bg-neutral-700 mt-5 p-3 rounded font-bold uppercase cursor-pointer" value="Enviar informação" />
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="bg-neutral-700 mt-5 p-3 rounded font-bold uppercase cursor-pointer"
+          >
+            {isSubmitting ? "Enviando informação..." : "Enviar informação"}
+          </button>
+          <ToastContainer />
       </form>
     </div>
   )
