@@ -15,6 +15,14 @@ Este projeto é uma Single Page Application (SPA) desenvolvida em Next.js para c
 - Página com mais informações sobre a pessoa com destaque da situação (desaparecida ou encontrada).
 - Botão para reportar informações sobre o desaparecido.
 
+## Imagens
+
+![Home](/docs/img/home.png)
+
+![Detail Missing Person](/docs/img/detail-missing-person.png)
+
+![Detail Found Person](/docs/img/detail-found-person.png)
+
 ## Instalação e execução
 
 ### Sem Docker
