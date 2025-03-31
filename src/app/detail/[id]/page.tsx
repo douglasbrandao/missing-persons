@@ -13,7 +13,7 @@ export default async function MissingPersonDetail({
   const isPersonFound = person.ultimaOcorrencia?.dataLocalizacao
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-8 lg:px-0 gap-10 xl:w-3xl">
       <div className="col-span-3 flex justify-center border-b-1 border-white pb-5">
         <h1 className="text-3xl uppercase font-extrabold">Detalhes</h1>
       </div>
