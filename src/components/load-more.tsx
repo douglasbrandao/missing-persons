@@ -19,7 +19,12 @@ export function LoadMore() {
     await delay(2000);
     const nextPage = page + 1;
     const newMissingPersons = await fetchMissingPersons(nextPage)
-    setMissingPersons((prevMissingPersons: missingPerson[]) => [...prevMissingPersons, ...newMissingPersons]);
+    setMissingPersons((prevMissingPersons: missingPerson[]) => {
+      const personIds = new Set()
+      const missingPersons = [...prevMissingPersons, ...newMissingPersons]
+        .filter(({ id }) => !personIds.has(id) && personIds.add(id))
+      return missingPersons
+    });
     setPage(nextPage);
   };
 
