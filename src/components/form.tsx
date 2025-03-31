@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { lastOccurence } from "@/types";
 import { sendMissingPersonInformation } from "@/actions/send-missing-person-information";
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { ToastContainer, toast } from 'react-toastify';
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 3MB
@@ -40,6 +40,7 @@ interface Props {
 }
 
 export function Form({ occurence }: Props) {
+  const pathname = usePathname()
   const router = useRouter()
   const {
     register,
@@ -63,7 +64,7 @@ export function Form({ occurence }: Props) {
       })
       toast.success('Informações enviadas com sucesso!', {
         onClose: () => {
-          router.refresh()
+          router.push(`${pathname}/success`)
         }
       })
     } catch {
