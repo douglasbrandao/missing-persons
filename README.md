@@ -29,15 +29,15 @@ Este projeto é uma Single Page Application (SPA) desenvolvida em Next.js para c
 
 Clone o repositório:
 ```sh
-   git clone https://github.com/douglasbrandao/missing-persons.git
+git clone https://github.com/douglasbrandao/missing-persons.git
 ```
 Instale as dependências:
 ```sh
-   npm install
+npm install
 ```
 Execute o projeto:
 ```sh
-   npm run dev
+npm run dev
 ```
 Acesse em: `http://localhost:3000`
 
