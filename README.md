@@ -41,12 +41,17 @@ Execute o projeto:
 ```
 Acesse em: `http://localhost:3000`
 
-### Com Docker (Falta fazer)
-Construa e execute o container:
-   ```sh
-   docker-compose up --build
-   ```
-Acesse em: `http://localhost:3000`
+### Com Docker
+Construa a imagem:
+```sh
+docker build -t missing-persons-seplag-douglas .
+```
+
+Execute o container:
+```sh
+docker run -p 3000:3000 missing-persons-seplag-douglas
+```
+Acesse em `http://localhost:3000`
 
 ## Estrutura do Projeto
 ```
