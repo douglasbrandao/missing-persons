@@ -9,8 +9,12 @@ import { missingPerson } from "@/types";
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-export function LoadMore() {
-  const [missingPersons, setMissingPersons] = useState<missingPerson[]>([]);
+interface Props {
+  persons: missingPerson[]
+}
+
+export function LoadMore({ persons } : Props) {
+  const [missingPersons, setMissingPersons] = useState<missingPerson[]>(persons);
   const [page, setPage] = useState(1);
 
   const { ref, inView } = useInView();
@@ -18,7 +22,7 @@ export function LoadMore() {
   const loadMoreMissingPersons = async () => {
     await delay(2000);
     const nextPage = page + 1;
-    const newMissingPersons = await fetchMissingPersons(nextPage)
+    const newMissingPersons = await fetchMissingPersons({}, nextPage)
     setMissingPersons((prevMissingPersons: missingPerson[]) => {
       const personIds = new Set()
       const missingPersons = [...prevMissingPersons, ...newMissingPersons]
