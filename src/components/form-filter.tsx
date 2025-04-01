@@ -59,7 +59,7 @@ export function FormFilter({ persons }: Props) {
         className="col-span-3 flex flex-col items-center"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div className="flex items-stretch gap-2">
+        <div className="flex flex-col md:flex-row md:items-stretch gap-2">
           <input type="text" id="name" className="text-gray-400 border-1 border-gray-800 rounded p-2" {...register('name')} placeholder="Nome" />
           <select
             id="sex"
