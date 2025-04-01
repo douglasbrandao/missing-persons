@@ -3,8 +3,8 @@
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useState } from "react";
-import { missingPerson } from "@/types";
+import { useState } from "react";
+import { Filters, missingPerson } from "@/types";
 import { LoadMore } from "./load-more";
 import { Card } from "./ui/card";
 import { fetchMissingPersons } from "@/actions/fetch-missing-persons";
@@ -28,7 +28,8 @@ interface Props {
 }
 
 export function FormFilter({ persons }: Props) {
-  const [missingPersons, setMissingPersons] = useState(persons)
+  const [filters, setFilters] = useState<Filters>({})
+  const [missingPersons, setMissingPersons] = useState<missingPerson[]>(persons)
 
   const {
     register,
@@ -49,7 +50,8 @@ export function FormFilter({ persons }: Props) {
       status: data.status,
     }
     const response = await fetchMissingPersons(filters)
-    setMissingPersons(response)
+    setFilters(filters)
+    setMissingPersons(response);
   };
 
   return (
@@ -92,10 +94,23 @@ export function FormFilter({ persons }: Props) {
         </button>
     </form>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-      {missingPersons.map((person) => (
-        <Card key={person.id} person={person} />
-      ))}
-      <LoadMore persons={missingPersons} />
+      {
+        missingPersons.length > 0 ?
+        (
+          <>
+            {missingPersons.map((person) => (<Card key={person.id} person={person} />))}
+            <LoadMore
+              missingPersons={missingPersons}
+              setMissingPersons={setMissingPersons}
+              filters={filters}
+            />
+          </>
+        ) :
+        <div className="md:col-span-2 lg:col-span-3 flex flex-col items-center gap-3">
+          <p className="text-3xl">😔</p>
+          <p className="font-medium text-3xl">Desculpe, não encontrei ninguém.</p>
+        </div>
+      }
     </div>
     </>
   )

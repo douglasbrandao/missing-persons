@@ -27,3 +27,13 @@ export interface missingAndFoundNumbers {
   missingNumber: number;
   foundNumber: number;
 }
+
+export interface Filters {
+  nome?: string
+  sexo?: string,
+  faixaIdadeInicial?: string,
+  faixaIdadeFinal?: string,
+  status?: string,
+  page?: string,
+  perPage?: string
+}

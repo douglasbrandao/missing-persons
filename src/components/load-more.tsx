@@ -5,25 +5,25 @@ import { useInView } from "react-intersection-observer";
 import { Card } from "@/components/ui/card";
 import { Spinner } from "@/components/ui/spinner";
 import { fetchMissingPersons } from "@/actions/fetch-missing-persons";
-import { missingPerson } from "@/types";
+import { Filters, missingPerson } from "@/types";
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 interface Props {
-  persons: missingPerson[]
+  missingPersons: missingPerson[],
+  setMissingPersons: React.Dispatch<React.SetStateAction<missingPerson[]>>,
+  filters: Filters,
 }
 
-export function LoadMore({ persons } : Props) {
-  const [missingPersons, setMissingPersons] = useState<missingPerson[]>(persons);
+export function LoadMore({ missingPersons, setMissingPersons, filters } : Props) {
   const [page, setPage] = useState(1);
-
   const { ref, inView } = useInView();
 
   const loadMoreMissingPersons = async () => {
     await delay(2000);
     const nextPage = page + 1;
-    const newMissingPersons = await fetchMissingPersons({}, nextPage)
-    setMissingPersons((prevMissingPersons: missingPerson[]) => {
+    const newMissingPersons = await fetchMissingPersons(filters, nextPage)
+    setMissingPersons((prevMissingPersons) => {
       const personIds = new Set()
       const missingPersons = [...prevMissingPersons, ...newMissingPersons]
         .filter(({ id }) => !personIds.has(id) && personIds.add(id))
@@ -40,15 +40,19 @@ export function LoadMore({ persons } : Props) {
 
   return (
     <>
-      {missingPersons.map((person) => (
+      {
+        missingPersons && missingPersons.map((person) => (
           <Card key={person.id} person={person} />
-      ))}
-      <div
+        ))
+      }
+      {
+        missingPersons && <div
         className="flex justify-center items-center p-4 col-span-1 sm:col-span-2 md:col-span-3"
         ref={ref}
       >
         <Spinner />
       </div>
+      }
     </>
   );
 }
