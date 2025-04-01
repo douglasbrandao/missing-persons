@@ -1,3 +1,12 @@
+# Desafio Front-end - SEPLAG
+
+## Dados
+
+- Douglas Frota Brandão
+- douglasfrb@gmail.com
+- https://www.linkedin.com/in/douglasfbrandao/
+
+
 # Missing Persons - SPA
 Este projeto é uma Single Page Application (SPA) desenvolvida em Next.js para consultar e reportar informações sobre pessoas desaparecidas. Os dados são fornecidos pela API da Polícia Judiciária Civil de Mato Grosso.
 
@@ -20,8 +29,6 @@ Este projeto é uma Single Page Application (SPA) desenvolvida em Next.js para c
 ![Home](/docs/img/home.png)
 
 ![Detail Missing Person](/docs/img/detail-missing-person.png)
-
-![Detail Found Person](/docs/img/detail-found-person.png)
 
 ## Instalação e execução
 
