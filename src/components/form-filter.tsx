@@ -52,13 +52,12 @@ export function FormFilter({ persons }: Props) {
   };
 
   return (
-    <>
+    <div className="flex flex-col gap-5">
       <form
-        className="col-span-3 flex flex-col items-center"
         onChange={handleSubmit(onChange)}
       >
-        <div className="flex flex-col md:flex-row md:items-stretch gap-2">
-          <input type="text" id="name" className="text-gray-400 border-1 border-gray-800 rounded p-2" {...register('name')} placeholder="Nome" />
+        <div className="flex flex-col md:flex-row md:justify-stretch gap-2">
+          <input type="text" id="name" className="text-gray-400 border-1 border-gray-800 rounded p-2 grow" {...register('name')} placeholder="Nome" />
           <select
             id="sex"
             defaultValue=""
@@ -69,12 +68,12 @@ export function FormFilter({ persons }: Props) {
             <option value="FEMININO">Feminino</option>
             <option value="MASCULINO">Masculino</option>
           </select>
-          <input type="number" id="min-age" min="0" className="text-gray-400 border-1 border-gray-800 rounded p-2"{...register('minAge')} placeholder="Idade mínima" />
-          <input type="number" id="max-age" min="0" className="text-gray-400 border-1 border-gray-800 rounded p-2"{...register('maxAge')} placeholder="Idade máxima"/>
+          <input type="number" id="min-age" min="0" className="text-gray-400 border-1 border-gray-800 rounded p-2 grow"{...register('minAge')} placeholder="Idade mínima" />
+          <input type="number" id="max-age" min="0" className="text-gray-400 border-1 border-gray-800 rounded p-2 grow"{...register('maxAge')} placeholder="Idade máxima"/>
           <select
             id="sex"
             defaultValue=""
-            className="text-gray-400 border-1 border-gray-800 rounded p-2"
+            className="text-gray-400 border-1 border-gray-800 rounded p-2 grow"
             {...register('status')}
           >
             <option value="">Status</option>
@@ -82,25 +81,25 @@ export function FormFilter({ persons }: Props) {
             <option value="LOCALIZADO">Localizado</option>
           </select>
         </div>
-    </form>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-      {
-        missingPersons.length > 0 ?
-        (
-          <>
-            {missingPersons.map((person) => (<Card key={person.id} person={person} />))}
-            <LoadMore
-              setMissingPersons={setMissingPersons}
-              filters={filters}
-            />
-          </>
-        ) :
-        <div className="md:col-span-2 lg:col-span-3 flex flex-col items-center gap-3">
-          <p className="text-3xl">😔</p>
-          <p className="font-medium text-3xl">Desculpe, não encontrei ninguém.</p>
-        </div>
-      }
+      </form>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
+        {
+          missingPersons.length > 0 ?
+          (
+            <>
+              {missingPersons.map((person) => (<Card key={person.id} person={person} />))}
+              <LoadMore
+                setMissingPersons={setMissingPersons}
+                filters={filters}
+              />
+            </>
+          ) :
+          <div className="md:col-span-2 lg:col-span-3 flex flex-col items-center gap-3">
+            <p className="text-3xl">😔</p>
+            <p className="font-medium text-3xl">Desculpe, não encontrei ninguém.</p>
+          </div>
+        }
+      </div>
     </div>
-    </>
   )
 }
