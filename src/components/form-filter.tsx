@@ -3,7 +3,7 @@
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Filters, missingPerson } from "@/types";
 import { LoadMore } from "./load-more";
 import { Card } from "./ui/card";
@@ -33,17 +33,12 @@ export function FormFilter({ persons }: Props) {
 
   const {
     register,
-    reset,
     handleSubmit,
-    formState: {
-      isSubmitting,
-      isSubmitSuccessful,
-    }
   } = useForm<FormData>({
       resolver: zodResolver(schema)
   });
 
-  async function onSubmit(data: FormData) {
+  async function onChange(data: FormData) {
     const filters = {
       nome: data.name,
       sexo: data.sex,
@@ -56,17 +51,11 @@ export function FormFilter({ persons }: Props) {
     setMissingPersons(response);
   };
 
-  useEffect(() => {
-    if (isSubmitSuccessful) {
-      reset()
-    }
-  }, [isSubmitSuccessful, reset])
-
   return (
     <>
       <form
         className="col-span-3 flex flex-col items-center"
-        onSubmit={handleSubmit(onSubmit)}
+        onChange={handleSubmit(onChange)}
       >
         <div className="flex flex-col md:flex-row md:items-stretch gap-2">
           <input type="text" id="name" className="text-gray-400 border-1 border-gray-800 rounded p-2" {...register('name')} placeholder="Nome" />
@@ -93,13 +82,6 @@ export function FormFilter({ persons }: Props) {
             <option value="LOCALIZADO">Localizado</option>
           </select>
         </div>
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="bg-neutral-700 mt-5 py-2 px-20 rounded font-bold uppercase cursor-pointer"
-          >
-            {isSubmitting ? "Buscando..." : "Buscar"}
-        </button>
     </form>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
       {
