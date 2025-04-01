@@ -48,7 +48,7 @@ export default async function MissingPersonDetail({
         </span>
       </div>
       <Image
-        src="/missing.jpg"
+        src={person?.urlFoto ? person.urlFoto : '/missing.jpg'}
         width={170}
         height={170}
         alt="Default image for missing persons"

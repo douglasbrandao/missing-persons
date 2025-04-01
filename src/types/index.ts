@@ -4,7 +4,7 @@ export interface missingPerson {
   idade: number;
   sexo: string;
   vivo: boolean;
-  urlFoto?: null;
+  urlFoto?: string;
   ultimaOcorrencia: lastOccurence;
 }
 

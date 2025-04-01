@@ -41,15 +41,14 @@ export function Card({ person }: Props) {
         </span>
       </div>
       <div className="flex flex-col gap-1">
-        <div className="border-2 border-black">
           {/* Coloquei um avatar default por que as URLS estão vindo quebradas na API */}
           <Image
-            src="/missing.jpg"
+            src={person.urlFoto ? person.urlFoto : '/missing.jpg'}
             width={128}
             height={128}
-            alt="Default image for missing persons"
+            alt="Avatar"
+            className="border-2 border-black object-center aspect-square"
           />
-        </div>
         {
           isPersonFound ?
             <div className="flex flex-col">
