@@ -4,12 +4,12 @@ import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { Spinner } from "@/components/ui/spinner";
 import { fetchMissingPersons } from "@/actions/fetch-missing-persons";
-import { Filters, missingPerson } from "@/types";
+import { Filters, MissingPerson } from "@/types";
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 interface Props {
-  setMissingPersons: React.Dispatch<React.SetStateAction<missingPerson[]>>,
+  setMissingPersons: React.Dispatch<React.SetStateAction<MissingPerson[]>>,
   filters: Filters,
 }
 
@@ -21,7 +21,7 @@ export function LoadMore({ setMissingPersons, filters } : Props) {
   const loadMoreMissingPersons = async () => {
     await delay(2000);
     const nextPage = page + 1;
-    const newMissingPersons = await fetchMissingPersons(filters, nextPage)
+    const { content: newMissingPersons } = await fetchMissingPersons(filters, nextPage)
 
     if (newMissingPersons.length === 0) {
       setHasData(false);

@@ -3,7 +3,7 @@ import { fetchMissingAndFoundNumbers } from "../actions/fetch-missing-and-found-
 import { FormFilter } from "@/components/form-filter";
 
 export default async function Home() {
-  const [missingPersons, { missingNumber, foundNumber }] = await Promise.all(
+  const [{ content: missingPersons }, { missingNumber, foundNumber }] = await Promise.all(
     [
       fetchMissingPersons(),
       fetchMissingAndFoundNumbers()

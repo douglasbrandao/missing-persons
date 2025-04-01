@@ -4,7 +4,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-import { Filters, missingPerson } from "@/types";
+import { Filters, MissingPerson } from "@/types";
 import { LoadMore } from "./load-more";
 import { Card } from "./ui/card";
 import { fetchMissingPersons } from "@/actions/fetch-missing-persons";
@@ -24,12 +24,12 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 interface Props {
-  persons: missingPerson[]
+  persons: MissingPerson[]
 }
 
 export function FormFilter({ persons }: Props) {
   const [filters, setFilters] = useState<Filters>({})
-  const [missingPersons, setMissingPersons] = useState<missingPerson[]>(persons)
+  const [missingPersons, setMissingPersons] = useState<MissingPerson[]>(persons)
 
   const {
     register,
@@ -46,7 +46,7 @@ export function FormFilter({ persons }: Props) {
       faixaIdadeFinal: data.maxAge,
       status: data.status,
     }
-    const response = await fetchMissingPersons(filters)
+    const { content: response } = await fetchMissingPersons(filters)
     setFilters(filters)
     setMissingPersons(response);
   };
