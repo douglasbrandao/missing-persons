@@ -100,7 +100,6 @@ export function FormFilter({ persons }: Props) {
           <>
             {missingPersons.map((person) => (<Card key={person.id} person={person} />))}
             <LoadMore
-              missingPersons={missingPersons}
               setMissingPersons={setMissingPersons}
               filters={filters}
             />

@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { Card } from "@/components/ui/card";
 import { Spinner } from "@/components/ui/spinner";
 import { fetchMissingPersons } from "@/actions/fetch-missing-persons";
 import { Filters, missingPerson } from "@/types";
@@ -10,19 +9,24 @@ import { Filters, missingPerson } from "@/types";
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 interface Props {
-  missingPersons: missingPerson[],
   setMissingPersons: React.Dispatch<React.SetStateAction<missingPerson[]>>,
   filters: Filters,
 }
 
-export function LoadMore({ missingPersons, setMissingPersons, filters } : Props) {
+export function LoadMore({ setMissingPersons, filters } : Props) {
   const [page, setPage] = useState(1);
+  const [hasData, setHasData] = useState(true);
   const { ref, inView } = useInView();
 
   const loadMoreMissingPersons = async () => {
     await delay(2000);
     const nextPage = page + 1;
     const newMissingPersons = await fetchMissingPersons(filters, nextPage)
+
+    if (newMissingPersons.length === 0) {
+      setHasData(false);
+    }
+
     setMissingPersons((prevMissingPersons) => {
       const personIds = new Set()
       const missingPersons = [...prevMissingPersons, ...newMissingPersons]
@@ -33,20 +37,20 @@ export function LoadMore({ missingPersons, setMissingPersons, filters } : Props)
   };
 
   useEffect(() => {
-    if (inView) {
+    if (inView && hasData) {
       loadMoreMissingPersons();
     }
-  }, [inView]);
+  }, [inView, hasData]);
+
+  useEffect(() => {
+    setPage(1);
+    setHasData(true);
+  }, [filters]);
 
   return (
     <>
       {
-        missingPersons && missingPersons.map((person) => (
-          <Card key={person.id} person={person} />
-        ))
-      }
-      {
-        missingPersons && <div
+        hasData && <div
         className="flex justify-center items-center p-4 col-span-1 sm:col-span-2 md:col-span-3"
         ref={ref}
       >
