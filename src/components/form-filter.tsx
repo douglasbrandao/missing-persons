@@ -3,7 +3,7 @@
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Filters, missingPerson } from "@/types";
 import { LoadMore } from "./load-more";
 import { Card } from "./ui/card";
@@ -33,9 +33,11 @@ export function FormFilter({ persons }: Props) {
 
   const {
     register,
+    reset,
     handleSubmit,
     formState: {
       isSubmitting,
+      isSubmitSuccessful,
     }
   } = useForm<FormData>({
       resolver: zodResolver(schema)
@@ -53,6 +55,12 @@ export function FormFilter({ persons }: Props) {
     setFilters(filters)
     setMissingPersons(response);
   };
+
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset()
+    }
+  }, [isSubmitSuccessful, reset])
 
   return (
     <>
@@ -88,7 +96,7 @@ export function FormFilter({ persons }: Props) {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="bg-neutral-700 mt-5 p-3 rounded font-bold uppercase cursor-pointer"
+          className="bg-neutral-700 mt-5 py-2 px-20 rounded font-bold uppercase cursor-pointer"
           >
             {isSubmitting ? "Buscando..." : "Buscar"}
         </button>
