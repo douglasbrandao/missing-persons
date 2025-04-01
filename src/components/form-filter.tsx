@@ -28,7 +28,6 @@ interface Props {
 }
 
 export function FormFilter({ persons }: Props) {
-  const [filters, setFilters] = useState({})
   const [missingPersons, setMissingPersons] = useState(persons)
 
   const {
@@ -42,13 +41,13 @@ export function FormFilter({ persons }: Props) {
   });
 
   async function onSubmit(data: FormData) {
-    setFilters({
+    const filters = {
       nome: data.name,
       sexo: data.sex,
       faixaIdadeInicial: data.minAge,
       faixaIdadeFinal: data.maxAge,
       status: data.status,
-    })
+    }
     const response = await fetchMissingPersons(filters)
     setMissingPersons(response)
   };
