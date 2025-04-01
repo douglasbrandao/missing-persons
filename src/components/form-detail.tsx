@@ -39,7 +39,7 @@ interface Props {
   occurence: lastOccurence
 }
 
-export function Form({ occurence }: Props) {
+export function FormDetail({ occurence }: Props) {
   const pathname = usePathname()
   const router = useRouter()
   const {

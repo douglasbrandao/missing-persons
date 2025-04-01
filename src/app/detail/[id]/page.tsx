@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 import { fetchMissingPersonDetail } from "@/actions/fetch-missing-person-detail";
-import { Form } from "@/components/form";
+import { FormDetail } from "@/components/form-detail";
 
 export default async function MissingPersonDetail({
   params
@@ -73,7 +73,7 @@ export default async function MissingPersonDetail({
         </>
         :
         (
-          <Form occurence={person.ultimaOcorrencia} />
+          <FormDetail occurence={person.ultimaOcorrencia} />
         )
       }
     </div>
