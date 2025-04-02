@@ -1,10 +1,10 @@
-import { missingPerson } from "@/types";
+import { MissingPerson } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 interface Props {
-  person: missingPerson
+  person: MissingPerson
 }
 
 export function Card({ person }: Props) {
@@ -35,10 +35,6 @@ export function Card({ person }: Props) {
           <strong>Vestindo: </strong>
           {person.ultimaOcorrencia?.ocorrenciaEntrevDesapDTO?.vestimentasDesaparecido || 'Não informado'}
         </span>
-        <span className="text-black text-sm italic">
-          <strong>Mais informações: </strong>
-          {person.ultimaOcorrencia?.ocorrenciaEntrevDesapDTO?.informacao || 'Não informado'}
-        </span>
       </div>
       <div className="flex flex-col gap-1">
           {/* Coloquei um avatar default por que as URLS estão vindo quebradas na API */}
@@ -59,7 +55,7 @@ export function Card({ person }: Props) {
               </span>
               <span className="text-xs text-black">
                 <strong>Data: </strong>
-                {new Intl.DateTimeFormat('pt-BR').format(new Date(person.ultimaOcorrencia?.dataLocalizacao))}
+                {new Intl.DateTimeFormat('pt-BR').format(new Date(person.ultimaOcorrencia.dataLocalizacao))}
               </span>
             </div>
           :

@@ -94,7 +94,7 @@ export function FormFilter({ persons }: Props) {
               />
             </>
           ) :
-          <div className="md:col-span-2 lg:col-span-3 flex flex-col items-center gap-3">
+          <div className="md:col-span-3 lg:col-span-4 flex flex-col items-center gap-3">
             <p className="text-3xl">😔</p>
             <p className="font-medium text-3xl">Desculpe, não encontrei ninguém.</p>
           </div>
