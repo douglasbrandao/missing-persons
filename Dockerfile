@@ -12,4 +12,4 @@ EXPOSE 3000
 
 ENV BASE_URL="https://abitus-api.geia.vip/v1"
 
-CMD ["npm", "run", "dev"]
+CMD ["sh", "-c", "npm run build && npm start"]
