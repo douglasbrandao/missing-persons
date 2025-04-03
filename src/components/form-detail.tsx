@@ -3,10 +3,10 @@
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { lastOccurence } from "@/types";
 import { sendMissingPersonInformation } from "@/actions/send-missing-person-information";
 import { usePathname, useRouter } from 'next/navigation';
 import { ToastContainer, toast } from 'react-toastify';
+import { LastOccurence } from "@/types";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 3MB
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png"];
@@ -36,7 +36,7 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 interface Props {
-  occurence: lastOccurence
+  occurence: LastOccurence
 }
 
 export function FormDetail({ occurence }: Props) {
