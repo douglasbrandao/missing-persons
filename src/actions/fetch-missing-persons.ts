@@ -9,7 +9,9 @@ export async function fetchMissingPersons(
   page: number = 0,
   perPage: number = 12
 ): Promise<MissingPersonsResponse> {
-  const response = await fetch(`${BASE_URL}/pessoas/aberto/filtro?${new URLSearchParams(filters).toString()}&pagina=${page}&porPagina=${perPage}&direcao=DESC`);
+  const response = await fetch(`${BASE_URL}/pessoas/aberto/filtro?${new URLSearchParams(filters).toString()}&pagina=${page}&porPagina=${perPage}&direcao=DESC`, {
+    cache: 'no-store'
+  });
   const data = await response.json();
   return data
 }
