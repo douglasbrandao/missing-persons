@@ -13,10 +13,10 @@ export function Card({ person }: Props) {
   return (
     <Link
       href={`/detail/${person.id}`}
-      className="bg-white bg-cover bg-center bg-opacity-25 bg-[url(/brasao-pc.png)] grid grid-cols-3 gap-3 rounded-md w-[300px] p-5 content-between"
+      className="bg-white bg-cover bg-center bg-opacity-25 bg-[url(/brasao-pc.png)] grid grid-cols-3 gap-3 rounded-md p-5 content-between"
     >
       <div className="flex flex-col col-span-3 items-center">
-        <h2 className={`font-extrabold uppercase text-3xl ${isPersonFound ? 'text-teal-800' : 'text-red-500'}`}>
+        <h2 className={`font-extrabold uppercase text-3xl md:text-2xl lg:text-3xl ${isPersonFound ? 'text-teal-800' : 'text-red-500'}`}>
           {isPersonFound ? 'Encontrado' : 'Desaparecido'}
         </h2>
         <h6 className={`font-bold uppercase text-base text-center ${isPersonFound ? 'text-teal-800' : 'text-red-500'}`}>{person.nome}</h6>

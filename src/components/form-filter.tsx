@@ -52,11 +52,12 @@ export function FormFilter({ persons }: Props) {
   };
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col items-center max-w-[1200px] px-10 gap-5">
       <form
         onChange={handleSubmit(onChange)}
+        className="self-stretch"
       >
-        <div className="flex flex-col md:flex-row md:justify-stretch gap-2">
+        <div className="flex flex-col lg:flex-row gap-2">
           <input type="text" id="name" className="text-gray-400 border-1 border-gray-800 rounded p-2 grow" {...register('name')} placeholder="Nome" />
           <select
             id="sex"
@@ -82,24 +83,22 @@ export function FormFilter({ persons }: Props) {
           </select>
         </div>
       </form>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
-        {
-          missingPersons.length > 0 ?
-          (
-            <>
-              {missingPersons.map((person) => (<Card key={person.id} person={person} />))}
-              <LoadMore
-                setMissingPersons={setMissingPersons}
-                filters={filters}
-              />
-            </>
-          ) :
-          <div className="md:col-span-3 lg:col-span-4 flex flex-col items-center gap-3">
+        {missingPersons.length > 0 ?
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+            {missingPersons.map((person) => (
+              <Card key={person.id} person={person} />
+            ))}
+            <LoadMore
+              setMissingPersons={setMissingPersons}
+              filters={filters}
+            />
+          </div>
+        :
+          <div className="flex flex-col items-center gap-3">
             <p className="text-3xl">😔</p>
             <p className="font-medium text-3xl">Desculpe, não encontrei ninguém.</p>
           </div>
         }
-      </div>
     </div>
   )
 }

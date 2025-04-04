@@ -51,7 +51,7 @@ export function LoadMore({ setMissingPersons, filters } : Props) {
     <>
       {
         hasData && <div
-        className="flex justify-center items-center p-4 col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4"
+        className="flex justify-center items-center p-4 col-span-1 sm:col-span-2 md:col-span-3"
         ref={ref}
       >
         <Spinner />
