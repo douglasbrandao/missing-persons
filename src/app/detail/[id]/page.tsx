@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import { fetchMissingPersonDetail } from "@/actions/fetch-missing-person-detail";
 import { FormDetail } from "@/components/form-detail";
+import { formatDate } from "@/utils";
 
 export default async function MissingPersonDetail({
   params
@@ -44,7 +45,7 @@ export default async function MissingPersonDetail({
         </span>
         <span className="text-white text-md">
           <strong>Data do desaparecimento: </strong>
-          {new Intl.DateTimeFormat('pt-BR').format(new Date(person.ultimaOcorrencia?.dtDesaparecimento))}
+          {formatDate(person.ultimaOcorrencia?.dtDesaparecimento)}
         </span>
       </div>
       <Image
@@ -63,7 +64,7 @@ export default async function MissingPersonDetail({
           <div className="flex flex-col">
             <span className="text-white text-md">
               <strong>Data da localização: </strong>
-              {new Intl.DateTimeFormat('pt-BR').format(new Date(person.ultimaOcorrencia?.dataLocalizacao))}
+              {formatDate(person.ultimaOcorrencia?.dataLocalizacao)}
             </span>
             <span className="text-white text-md">
               <strong>Vivo(a)? </strong>

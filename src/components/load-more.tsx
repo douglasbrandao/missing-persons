@@ -5,8 +5,7 @@ import { useInView } from "react-intersection-observer";
 import { Spinner } from "@/components/ui/spinner";
 import { fetchMissingPersons } from "@/actions/fetch-missing-persons";
 import { Filters, MissingPerson } from "@/types";
-
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+import { delay } from "@/utils";
 
 interface Props {
   setMissingPersons: React.Dispatch<React.SetStateAction<MissingPerson[]>>,

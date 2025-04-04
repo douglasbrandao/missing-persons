@@ -66,13 +66,14 @@ Acesse em `http://localhost:3000`
 ## Estrutura do Projeto
 ```
 /
-├── actions/
+├── actions/ # Chamadas API
 ├── app/
 │   ├── index.js  # Página inicial
 │   ├── details/[id].js  # Página de detalhes
-├── components/
+├── components/ # Componentes
 │   ├── ui/
-├── types/
+├── types/ # Tipagem
+├── utils/ # Utilitários
 ```
 ## Contato
 Desenvolvido por [Douglas Brandão](https://github.com/douglasbrandao).

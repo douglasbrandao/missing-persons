@@ -1,4 +1,5 @@
 import { MissingPerson } from "@/types";
+import { formatDate } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -55,7 +56,7 @@ export function Card({ person }: Props) {
               </span>
               <span className="text-xs text-black">
                 <strong>Data: </strong>
-                {new Intl.DateTimeFormat('pt-BR').format(new Date(person.ultimaOcorrencia.dataLocalizacao))}
+                {formatDate(person.ultimaOcorrencia.dataLocalizacao)}
               </span>
             </div>
           :
@@ -67,7 +68,7 @@ export function Card({ person }: Props) {
               </span>
               <span className="text-xs text-black">
                 <strong>Data: </strong>
-                {new Intl.DateTimeFormat('pt-BR').format(new Date(person.ultimaOcorrencia.dtDesaparecimento))}
+                {formatDate(person.ultimaOcorrencia.dtDesaparecimento)}
               </span>
             </div>
         }

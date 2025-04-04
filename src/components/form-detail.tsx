@@ -7,6 +7,7 @@ import { sendMissingPersonInformation } from "@/actions/send-missing-person-info
 import { usePathname, useRouter } from 'next/navigation';
 import { ToastContainer, toast } from 'react-toastify';
 import { LastOccurence } from "@/types";
+import { LoadingButton } from "./ui/loading-button";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 3MB
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png"];
@@ -62,11 +63,7 @@ export function FormDetail({ occurence }: Props) {
         occurence_id: occurence.ocoId,
         files: data.file,
       })
-      toast.success('Informações enviadas com sucesso!', {
-        onClose: () => {
-          router.push(`${pathname}/success`)
-        }
-      })
+      router.push(`${pathname}/success`)
     } catch {
       toast.error('Tivemos um problema com o envio dos dados', {
         onClose: () => {
@@ -109,13 +106,7 @@ export function FormDetail({ occurence }: Props) {
           <p className="text-sm text-red-500 mt-1">
             <span className="font-medium">{errors.file.message}</span>
           </p>}
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="bg-neutral-700 mt-5 p-3 rounded font-bold uppercase cursor-pointer"
-          >
-            {isSubmitting ? "Enviando informação..." : "Enviar informação"}
-          </button>
+          <LoadingButton loading={isSubmitting} />
           <ToastContainer />
       </form>
     </div>
