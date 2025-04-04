@@ -28,6 +28,7 @@ interface Props {
 }
 
 export function FormFilter({ persons }: Props) {
+  const [loading, setLoading] = useState(false);
   const [filters, setFilters] = useState<Filters>({})
   const [missingPersons, setMissingPersons] = useState<MissingPerson[]>(persons)
 
@@ -46,9 +47,11 @@ export function FormFilter({ persons }: Props) {
       faixaIdadeFinal: data.maxAge,
       status: data.status,
     }
+    setLoading(true);
     const { content: response } = await fetchMissingPersons(filters)
     setFilters(filters)
     setMissingPersons(response);
+    setLoading(false);
   };
 
   return (
@@ -83,22 +86,28 @@ export function FormFilter({ persons }: Props) {
           </select>
         </div>
       </form>
-        {missingPersons.length > 0 ?
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
-            {missingPersons.map((person) => (
-              <Card key={person.id} person={person} />
-            ))}
-            <LoadMore
-              setMissingPersons={setMissingPersons}
-              filters={filters}
-            />
+      {
+        loading ?
+          <div className="absolute inset-0 bg-black/70 flex items-center justify-center rounded-lg transition-opacity duration-300">
+            <div className="animate-spin h-5 w-5 border-2 border-amber-700 border-t-transparent rounded-full" />
           </div>
         :
-          <div className="flex flex-col items-center gap-3">
-            <p className="text-3xl">😔</p>
-            <p className="font-medium text-3xl">Desculpe, não encontrei ninguém.</p>
-          </div>
-        }
+          missingPersons.length > 0 ?
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+              {missingPersons.map((person) => (
+                <Card key={person.id} person={person} />
+              ))}
+              <LoadMore
+                setMissingPersons={setMissingPersons}
+                filters={filters}
+              />
+            </div>
+          :
+            <div className="flex flex-col items-center gap-3">
+              <p className="text-3xl">😔</p>
+              <p className="font-medium text-3xl">Desculpe, não encontrei ninguém.</p>
+            </div>
+      }
     </div>
   )
 }
