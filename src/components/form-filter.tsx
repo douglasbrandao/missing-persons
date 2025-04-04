@@ -55,7 +55,7 @@ export function FormFilter({ persons }: Props) {
   };
 
   return (
-    <div className="flex flex-col items-center max-w-[1200px] px-10 gap-5">
+    <div className="flex flex-col w-full items-center max-w-[1200px] px-10 gap-5">
       <form
         onChange={handleSubmit(onChange)}
         className="self-stretch"
