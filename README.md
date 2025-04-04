@@ -13,6 +13,9 @@ Este projeto é uma Single Page Application (SPA) desenvolvida em Next.js para c
 ## Tecnologias utilizadas
 - **Next.js**: Framework para aplicações React.
 - **Tailwind CSS**: Framework CSS para estilização.
+- **React Hook Form**: Lib para lidar com formulários.
+- **Zod**: Lib para validação de dados vindos do formulário.
+- **React Intersection Observer**: Implementação da Intersection Observer API para detectar quando um elemento aparece na tela. Foi utilizado para fazer a paginação no estilo infinite scroll, incrementando o número da página a cada vez que o elemento é detectado na tela.
 
 ## Funcionalidades
 
@@ -63,9 +66,13 @@ Acesse em `http://localhost:3000`
 ## Estrutura do Projeto
 ```
 /
+├── actions/
 ├── app/
 │   ├── index.js  # Página inicial
 │   ├── details/[id].js  # Página de detalhes
+├── components/
+│   ├── ui/
+├── types/
 ```
 ## Contato
 Desenvolvido por [Douglas Brandão](https://github.com/douglasbrandao).
