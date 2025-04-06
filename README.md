@@ -31,8 +31,6 @@ Este projeto é uma Single Page Application (SPA) desenvolvida em Next.js para c
 
 ![Home](/docs/img/home.png)
 
-![Detail Missing Person](/docs/img/detail-missing-person.png)
-
 ## Instalação e execução
 
 ### Sem Docker
