@@ -5,8 +5,7 @@
 - Nome: Douglas Frota Brandão
 - E-mail: douglasfrb@gmail.com
 - Linkedin: https://www.linkedin.com/in/douglasfbrandao/
-- Inscrição: 8579 e 8582 
-
+- Inscrições: 8579 e 8582 
 
 # Missing Persons - SPA
 Este projeto é uma Single Page Application (SPA) desenvolvida em Next.js para consultar e reportar informações sobre pessoas desaparecidas. Os dados são fornecidos pela API da Polícia Judiciária Civil de Mato Grosso.
@@ -46,7 +45,7 @@ npm install
 ```
 Execute o projeto:
 ```sh
-npm run dev
+npm run build && npm start
 ```
 Acesse em: `http://localhost:3000`
 
