@@ -2,9 +2,10 @@
 
 ## Dados
 
-- Douglas Frota Brandão
-- douglasfrb@gmail.com
-- https://www.linkedin.com/in/douglasfbrandao/
+- Nome: Douglas Frota Brandão
+- E-mail: douglasfrb@gmail.com
+- Linkedin: https://www.linkedin.com/in/douglasfbrandao/
+- Inscrição: 8579 e 8582 
 
 
 # Missing Persons - SPA
