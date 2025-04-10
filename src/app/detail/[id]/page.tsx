@@ -54,6 +54,7 @@ export default async function MissingPersonDetail({
         height={170}
         alt="Default image for missing persons"
         className="justify-self-end"
+        unoptimized
       />
       {
         isPersonFound ?

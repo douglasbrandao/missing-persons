@@ -45,6 +45,7 @@ export function Card({ person }: Props) {
             height={128}
             alt="Avatar"
             className="border-2 border-black object-center aspect-square"
+            unoptimized
           />
         {
           isPersonFound ?

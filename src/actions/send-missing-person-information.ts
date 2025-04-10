@@ -1,6 +1,6 @@
 'use server';
 
-const BASE_URL = process.env.BASE_URL
+const NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 
 interface PersonInformation {
   information: string,
@@ -33,7 +33,7 @@ export async function sendMissingPersonInformation({
     'ocoId': occurence_id.toString(),
   });
 
-  await fetch(`${BASE_URL}/ocorrencias/informacoes-desaparecido?${params}`, {
+  await fetch(`${NEXT_PUBLIC_BASE_URL}/ocorrencias/informacoes-desaparecido?${params}`, {
     method: 'POST',
     body: formData
   })
